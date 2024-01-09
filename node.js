@@ -21,13 +21,12 @@ const middle1 = async (req, resp, next) => {      //checking Number and password
     }
 
     else {
-        if (req.body.Number == check.Number) {
+       
             if (check.Password == req.body.Password)
                 next()
             else
                 resp.send('<h1>Plz Enter Right Password</h1>')
 
-        }
     }
 }
 
@@ -64,7 +63,7 @@ app.get('/signup', (req, resp) => {
 app.post('/signup', middle, async (req, resp) => {
 
     const model = await require(`${dir}/login_database.js`);
-    // const count = await model.count();
+   
     const d = await new model({ Name: req.body.name,Father_Name: req.body.Father_Name, Number: req.body.Number, Password: req.body.password ,email:req.body.email,class:req.body.class})
     const df = await d.save();
     if (df) {
